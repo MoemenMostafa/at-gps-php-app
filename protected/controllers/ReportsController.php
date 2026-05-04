@@ -451,7 +451,7 @@ $p2 = $points[$i];
 if ($p2['speed'] > $max_speed) $max_speed = $p2['speed'];
 
 if ($p2['speed'] >= $speedLimit) {
-$dist = $this->calculateDistance($p1['latitude'], $p1['longitude'], $p2['latitude'], $p2['longitude']) * 1000;
+$dist = $this->calculateDistance($p1['latitude'], $p1['longitude'], $p2['latitude'], $p2['longitude']);
 
 $d1 = DateTime::createFromFormat('YmdHis', $p1['gps_datetime']);
 $d2 = DateTime::createFromFormat('YmdHis', $p2['gps_datetime']);
