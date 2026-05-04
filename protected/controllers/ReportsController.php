@@ -142,9 +142,11 @@ class ReportsController extends Controller
 			} else {
 				$from = str_replace("-", "", $dateFromStr)."000000";
 			}
-			$dateFrom = new DateTime($from, new DateTimeZone('Africa/Cairo'));
-			$dateFrom->setTimezone(new DateTimeZone('UTC'));
-			$from =  $dateFrom->format('YmdHis');
+			$dateFrom = DateTime::createFromFormat('YmdHis', $from, new DateTimeZone('Africa/Cairo'));
+			if ($dateFrom) {
+				$dateFrom->setTimezone(new DateTimeZone('UTC'));
+				$from =  $dateFrom->format('YmdHis');
+			}
 
 			$dateToStr = trim($_POST['Vehicle']['dateTo']);
 			if (strpos($dateToStr, '/') !== false) {
@@ -153,9 +155,11 @@ class ReportsController extends Controller
 			} else {
 				$to = str_replace("-", "", $dateToStr)."235959";
 			}
-			$dateTo = new DateTime($to, new DateTimeZone('Africa/Cairo'));
-			$dateTo->setTimezone(new DateTimeZone('UTC'));
-			$to =  $dateTo->format('YmdHis');
+			$dateTo = DateTime::createFromFormat('YmdHis', $to, new DateTimeZone('Africa/Cairo'));
+			if ($dateTo) {
+				$dateTo->setTimezone(new DateTimeZone('UTC'));
+				$to =  $dateTo->format('YmdHis');
+			}
 
 			$condition = "t.gps_datetime BETWEEN '$from' AND '$to' AND gps_datetime NOT LIKE '20______000000'";
 			
@@ -406,10 +410,10 @@ class ReportsController extends Controller
 			}
 			
 			$speedLimit = $_POST['Vehicle']['speedLimit'];
+			$layer = "one"; // default
 			if ($speedLimit == 80){$layer = "one";}
 			if ($speedLimit == 90){$layer = "two";}
 
-			//$condition = "t.`date` BETWEEN '$from' AND '$to'";
 			$join = "LEFT JOIN vehicle AS v ON t.vehicle_id = v.id";
 			$condition = "t.`date` = '$date' AND t.`time_$layer` > 0";
 			if (Yii::app()->user->level < 1000) {
@@ -418,7 +422,7 @@ class ReportsController extends Controller
 			}
 		
 		if ($_POST['Vehicle']['groupBy'] == "driver"){
-			$select = "group_concat(vehicle_id separator ',') as vehicle_id, driver_id, max(max_speed) as max_speed, sum(distance_one) as distance_one, sum(time_one) as time_one, sum(distance_two) as distance_two, sum(time_two) as time_two, sum(distance_three) as distance_three, sum(time_three) as time_three";
+			$select = "group_concat(vehicle_id separator ',') as vehicle_id, driver_id, max(max_speed) as max_speed, sum(distance_one) as distance_one, sum(time_one) as time_one, sum(distance_two) as distance_two, sum(time_two) as time_two, sum(distance_three) as distance_three, sum(time_three) as time_three, sum(distance_four) as distance_four, sum(time_four) as time_four";
 			$group = "driver_id";
 			$condition .= " AND t.`driver_id` is not NULL";
 		}else{
@@ -498,7 +502,7 @@ class ReportsController extends Controller
                         $condition = "t.`last_connection` <= '{$_SESSION['disconnect_date']}' AND v.company_id = $company_id AND (r.end_date not between '01-01-2000' and '$today' OR  r.end_date is Null)";
 		
 		if ($_POST['Vehicle']['groupBy'] == "driver"){
-			$select = "group_concat(vehicle_id separator ',') as vehicle_id, driver_id, max(max_speed) as max_speed, sum(distance_one) as distance_one, sum(time_one) as time_one, sum(distance_two) as distance_two, sum(time_two) as time_two, sum(distance_three) as distance_three, sum(time_three) as time_three";
+			$select = "group_concat(vehicle_id separator ',') as vehicle_id, driver_id, max(max_speed) as max_speed, sum(distance_one) as distance_one, sum(time_one) as time_one, sum(distance_two) as distance_two, sum(time_two) as time_two, sum(distance_three) as distance_three, sum(time_three) as time_three, sum(distance_four) as distance_four, sum(time_four) as time_four";
 			$group = "driver_id";
 			$condition .= " AND t.`driver_id` is not NULL";
 		}else{
@@ -646,10 +650,10 @@ class ReportsController extends Controller
                 if ($_GET['export']){
                     $vehicleId = $_GET['vehicleId'];
                     $dateRange = explode("-",$_GET['dateRange']);
-                    $from = explode("/",$dateRange[0]);
-                    $from = trim($from[2])."/".trim($from[1])."/".trim($from[0]);
-                    $to = explode("/",$dateRange[1]);
-                    $to = trim($to[2])."/".trim($to[1])."/".trim($to[0]);
+                    $fromParts = explode("/",trim($dateRange[0]));
+                    $from = trim($fromParts[2])."-".str_pad(trim($fromParts[1]), 2, '0', STR_PAD_LEFT)."-".str_pad(trim($fromParts[0]), 2, '0', STR_PAD_LEFT);
+                    $toParts = explode("/",trim($dateRange[1]));
+                    $to = trim($toParts[2])."-".str_pad(trim($toParts[1]), 2, '0', STR_PAD_LEFT)."-".str_pad(trim($toParts[0]), 2, '0', STR_PAD_LEFT);
                     $datetimeRange['from'] = $from;
                     $datetimeRange['to'] = $to;
                     

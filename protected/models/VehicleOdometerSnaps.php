@@ -207,7 +207,7 @@ class VehicleOdometerSnaps extends CActiveRecord
                     $criteria->addCondition("cp.id = $company_id");
 		}
 		 // if all vehicles are selected
-                if ($vehicleId){
+                if ($vehicleId && is_numeric($vehicleId)){
                     //$criteria->select = array("t.vehicle_id", "(select odometer from vehicle_odometer_snaps AS b WHERE vehicle_id = $vehicleId AND date(datetime) = '{$datetimeRange['from']}' limit 1) as start" , "(select odometer from vehicle_odometer_snaps AS c WHERE vehicle_id = $vehicleId AND date(datetime) = '{$datetimeRange['to']}' limit 1) as end");
                     //$criteria->addCondition("vehicle_id = $vehicleId");
                     $criteria->select = array("t.vehicle_id, v.serial, sum(t.odometer) as dist");
