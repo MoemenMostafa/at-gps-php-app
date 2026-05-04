@@ -1,0 +1,15 @@
+<?php
+Yii::import('zii.widgets.CPortlet');
+
+class ReportFilter extends CPortlet{
+	public $model= Report;
+
+     public function renderContent(){
+		 
+		$this->render('_form', array('model'=>$model));
+		 
+		 
+
+     }
+}
+?>

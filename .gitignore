@@ -1,0 +1,7 @@
+assets/*
+protected/runtime/*
+protected/data/*.db
+.vscode/
+*.swp
+nohup.out
+remove.log

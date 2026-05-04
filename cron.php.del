@@ -1,0 +1,4 @@
+<?php
+$output = shell_exec('crontab -u root -l');
+echo "cron: ".$output;
+?>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="vehicleType.php" server="184.107.214.42//var/www/html/atgps/" local="129981329451038007" remote="130019830600000000" Dst="0" />
+<file name="LatestPoints.php" server="184.107.214.42//var/www/html/atgps/" local="130114603739940144" remote="130114603790000000" Dst="0" />
+<file name="DeviceType.php" server="184.107.214.42//var/www/html/atgps/" local="130055550175448038" remote="130055550260000000" Dst="0" />
+<file name="Route.php" server="184.107.214.42//var/www/html/atgps/" local="130060019010392219" remote="130060361560000000" Dst="0" />
+<file name="Vehicle.php" server="184.107.214.42//var/www/html/atgps/" local="130093065473740412" remote="130093066630000000" Dst="0" />
+<file name="Trip.php" server="184.107.214.42//var/www/html/atgps/" local="130111314355865550" remote="130111314390000000" Dst="0" />
+<file name="User.php" server="184.107.214.42//var/www/html/atgps/" local="130097262306729973" remote="130097262630000000" Dst="0" />
+<file name="Device.php" server="184.107.214.42//var/www/html/atgps/" local="130069506637456131" remote="130069516950000000" Dst="0" />
+<file name="Driver.php" server="184.107.214.42//var/www/html/atgps/" local="130069843096260473" remote="130069988720000000" Dst="0" />
+<file name="Company.php" server="184.107.214.42//var/www/html/atgps/" local="130137261351810025" remote="130137283910000000" Dst="0" />
+<file name="CompanyAdmin.php" server="184.107.214.42//var/www/html/atgps/" local="130137261804595923" remote="130137283920000000" Dst="0" />
+<file name="Country.php" server="184.107.214.42//var/www/html/atgps/" local="130065559789991919" remote="130069988720000000" Dst="0" />
+<file name="LatestAlerts.php" server="184.107.214.42//var/www/html/atgps/" local="130102361737497132" remote="130102361780000000" Dst="0" />
+<file name="Timezone.php" server="184.107.214.42//var/www/html/atgps/" local="130065571953537634" remote="130069988750000000" Dst="0" />
+<file name="UserSettings.php" server="184.107.214.42//var/www/html/atgps/" local="130066142769418172" remote="130069988770000000" Dst="0" />
+<file name="UserSettingsAdmin.php" server="184.107.214.42//var/www/html/atgps/" local="130066143258666155" remote="130069988780000000" Dst="0" />
+<file name="Reports.php" server="184.107.214.42//var/www/html/atgps/" local="130132152165283882" remote="130132658420000000" Dst="0" />
+<file name="AlertOverspeed.php" server="184.107.214.42//var/www/html/atgps/" local="130113027360472657" remote="130113539980000000" Dst="0" />
+<file name="Alert.php" server="184.107.214.42//var/www/html/atgps/" local="130141179589597465" remote="130141179910000000" Dst="0" />
+</dwsync>
